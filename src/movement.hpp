@@ -10,14 +10,22 @@
 namespace Movement {
 
 
-    int handle_movement(_2dShapes* shapeRef){
+    int handle_movement(_2dShapes* shapeRef, std::vector<_2dShapes>* applicationShapesRef, ApplicationState* State){
 
-        		if(IsKeyDown(KEY_Q)){
+        if(IsKeyDown(KEY_Q)){
 			shapeRef->close = true;
 		}
 		if(IsKeyDown(KEY_N)){
-			
+			applicationShapesRef->push_back(new_default_shape(shapeRef->coordinates));
+			State->shapeCounter++;
+
 		}
+		if(IsKeyDown(KEY_B)){
+			applicationShapesRef->pop_back();
+			State->shapeCounter--;
+
+		}
+
 
 		if(IsKeyDown(KEY_K)){
 			shapeRef->index = shapeRef->index >= 2 ? 0 : shapeRef->index + 1;

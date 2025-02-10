@@ -10,11 +10,12 @@
 #define FPS 180
 
 
+
+
 int main(int argc, char **argv){
 
-	InitWindow(800, 600, "Meu app");
-	std::vector<_2dShapes> shapesVector; //will use it later. 
-	//Can you do this GOLANG DEV? 
+	InitWindow(1600, 800, "Meu app");
+	std::vector<_2dShapes> applicationShapes;
 
 	_2dShapes shapes = {.index = 0, 
 						.currentShape = Shape::CIRCLE, 
@@ -24,16 +25,24 @@ int main(int argc, char **argv){
 						.close = false
 						};
 
+	ApplicationState appState = {.shapeCounter = 0};
 	srand(time(NULL));
 	SetTargetFPS(FPS);
+	bool isRunning = true;
+	
+	applicationShapes.push_back(shapes);
 
-	while(!WindowShouldClose() && shapes.close == false){
+	while(!WindowShouldClose() && isRunning){
 
-			Movement::handle_movement(&shapes);
+		if(IsKeyDown(KEY_Q)){
 
+			isRunning = false;
+			break;
+		} //quit the main loop
+
+		Movement::handle_movement(&applicationShapes[appState.shapeCounter], &applicationShapes, &appState);
 			ClearBackground(MAROON);
-			DrawText("Hello, world!", 400, 400, 40, RAYWHITE);
-			DrawShape(&shapes);
+			DrawShape(&applicationShapes);
 		EndDrawing();
 	}
 
