@@ -10,24 +10,24 @@
 namespace Movement {
 
 
-    int handle_movement(_2dShapes* shapeRef, std::vector<_2dShapes>* applicationShapesRef, ApplicationState* State){
+    void handle_movement(_2dShapes* shapeRef, std::vector<_2dShapes>* applicationShapesRef, ApplicationState* State){
 
-        if(IsKeyDown(KEY_Q)){
+        if(IsKeyPressed(KEY_Q)){
 			shapeRef->close = true;
 		}
-		if(IsKeyDown(KEY_N)){
+		if(IsKeyPressed(KEY_N)){
 			applicationShapesRef->push_back(new_default_shape(shapeRef->coordinates));
 			State->shapeCounter++;
 
 		}
-		if(IsKeyDown(KEY_B)){
+		if(IsKeyPressed(KEY_B)){
 			applicationShapesRef->pop_back();
 			State->shapeCounter--;
 
 		}
 
 
-		if(IsKeyDown(KEY_K)){
+		if(IsKeyPressed(KEY_K)){
 			shapeRef->index = shapeRef->index >= 2 ? 0 : shapeRef->index + 1;
 			change_shape(shapeRef);			
 		}
@@ -38,7 +38,7 @@ namespace Movement {
 			shapeRef->shapeSize -= 1;
 		}
 
-		if(IsKeyDown(KEY_C)){
+		if(IsKeyPressed(KEY_C)){
 			
 			unsigned char R =(unsigned char)rand() % 255;
 			unsigned char G = (unsigned char)rand() % 255;

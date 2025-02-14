@@ -40,6 +40,14 @@ int main(int argc, char **argv){
 			break;
 		} //quit the main loop
 
+		//capture the mouse clicked position
+		if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
+			_2dCoord mousePos =  GetMousePosition();
+			std::cout << mousePos.x << '\n';
+			std::cout << mousePos.y << '\n';
+						
+		}			
+
 		Movement::handle_movement(&applicationShapes[appState.shapeCounter], &applicationShapes, &appState);
 			ClearBackground(MAROON);
 			DrawShape(&applicationShapes);
