@@ -36,6 +36,8 @@ typedef struct {
 typedef struct {
 
 	int shapeCounter;
+    Color backgroundColor;
+    
 
 } ApplicationState;
 

@@ -26,6 +26,20 @@ namespace Movement {
 
 		}
 
+		if(IsKeyPressed(KEY_V)){
+			unsigned char R =(unsigned char)rand() % 255;
+			unsigned char G = (unsigned char)rand() % 255;
+			unsigned char B = (unsigned char)rand() % 255;
+			std::cout << G << '\n';
+			State->backgroundColor = {
+								 .r = R, 
+								 .g = G, 
+								 .b =B, 
+								 .a = (unsigned char)255
+								};
+
+		}
+
 
 		if(IsKeyPressed(KEY_K)){
 			shapeRef->index = shapeRef->index >= 2 ? 0 : shapeRef->index + 1;
@@ -50,7 +64,6 @@ namespace Movement {
 								 .b =B, 
 								 .a = (unsigned char)255
 								};
-		// std::this_thread::sleep_for(std::chrono::milliseconds(300));
 
 		}
 		if(IsKeyDown(KEY_UP)){

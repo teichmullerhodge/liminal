@@ -6,6 +6,7 @@ N freezes the current figure and create a new one.
 B deletes the current figure and go back to the previous one.
 C changes the figure to a random color.
 K changes the figure shape, current there is circle, square and rectangle.
+V changes the background color.
 Q quits the application.
 
 Numpad 5 increases the size of the figure.

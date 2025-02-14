@@ -6,6 +6,7 @@
 #include <time.h>
 #include <vector>
 #include "movement.hpp"
+#include "interaction.hpp"
 
 #define FPS 180
 
@@ -25,7 +26,7 @@ int main(int argc, char **argv){
 						.close = false
 						};
 
-	ApplicationState appState = {.shapeCounter = 0};
+	ApplicationState appState = {.shapeCounter = 0, .backgroundColor = MAROON};
 	srand(time(NULL));
 	SetTargetFPS(FPS);
 	bool isRunning = true;
@@ -34,22 +35,29 @@ int main(int argc, char **argv){
 
 	while(!WindowShouldClose() && isRunning){
 
-		if(IsKeyDown(KEY_Q)){
 
+		
+		
+		if(IsKeyDown(KEY_Q)){
+			
 			isRunning = false;
 			break;
-		} //quit the main loop
+		} 
 
 		//capture the mouse clicked position
 		if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
-			_2dCoord mousePos =  GetMousePosition();
-			std::cout << mousePos.x << '\n';
-			std::cout << mousePos.y << '\n';
+			
+			_2dCoord mousePos = GetMousePosition();
+			Interaction::handle_change_figure_click(&applicationShapes, &appState, &mousePos);
 						
-		}			
+		}
+		
+		
+		
+		
 
 		Movement::handle_movement(&applicationShapes[appState.shapeCounter], &applicationShapes, &appState);
-			ClearBackground(MAROON);
+			ClearBackground(appState.backgroundColor);
 			DrawShape(&applicationShapes);
 		EndDrawing();
 	}
